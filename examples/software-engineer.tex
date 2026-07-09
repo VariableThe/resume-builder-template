@@ -1,0 +1,81 @@
+% An anonymized example based on templates/resume.tex.
+% Compile with: tectonic examples/software-engineer.tex
+
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, top=1.6cm, bottom=1.6cm, left=1.7cm, right=1.7cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\setlist[itemize]{label=-, leftmargin=*, topsep=2pt, partopsep=0pt, parsep=0pt, itemsep=2pt}
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.3ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+    {\Huge \textbf{ALEX DEVELOPER}} \\[0.2cm]
+    {\large Software Engineer \enskip $\cdot$ \enskip Full-stack Developer \enskip $\cdot$ \enskip ML Enthusiast} \\[0.15cm]
+    alex@example.com \enskip $\cdot$ \enskip +1 000 000 0000 \enskip $\cdot$ \enskip City, Country \\[0.1cm]
+    \href{https://github.com/example}{GitHub} \enskip $\cdot$ \enskip
+    \href{https://linkedin.com/in/example}{LinkedIn} \enskip $\cdot$ \enskip
+    \href{https://example.com}{Portfolio}
+\end{center}
+
+\section*{Education}
+\noindent
+\textbf{Example University} \hfill City, Country \\
+B.S. in Computer Science \hfill 2022 -- 2026
+
+\section*{Technical Skills}
+\begin{itemize}
+    \item \textbf{Languages:} Python, TypeScript, JavaScript, C++, SQL
+    \item \textbf{Frameworks \& Tools:} React, Node.js, FastAPI, PostgreSQL, Docker, Git
+    \item \textbf{Core Areas:} Full-stack Development, APIs, Data Pipelines, Cloud Deployment
+\end{itemize}
+
+\section*{Experience}
+\noindent
+\textbf{Example Labs} \hfill Remote \\
+\textit{Software Engineering Intern} \hfill Jun 2025 -- Aug 2025
+\begin{itemize}
+    \item Built a dashboard that reduced manual reporting time by 60\% for a team of 15 analysts.
+    \item Implemented typed API clients and integration tests, lowering production API regressions during weekly releases.
+\end{itemize}
+
+\section*{Projects}
+\noindent
+\textbf{Study Planner} $|$ \textit{TypeScript, React, Node.js, PostgreSQL}
+\begin{itemize}
+    \item Created a scheduling app that generates study plans from deadlines, available hours, and course priority.
+    \item Designed a normalized PostgreSQL schema and REST API supporting recurring tasks and progress analytics.
+\end{itemize}
+
+\noindent
+\textbf{Image Classifier} $|$ \textit{Python, PyTorch, FastAPI}
+\begin{itemize}
+    \item Trained and deployed an image classification model with a FastAPI inference service and Dockerized runtime.
+    \item Added confidence thresholds and request logging to make predictions easier to inspect and debug.
+\end{itemize}
+
+\vspace{0.05cm}
+\noindent
+\textit{\small More projects available on \href{https://github.com/example}{GitHub}.}
+
+\section*{Certifications}
+\begin{itemize}
+    \item Cloud Fundamentals -- Example Provider
+\end{itemize}
+
+\section*{Leadership}
+\noindent
+\textbf{University Developer Club} \\
+\textit{Workshop Lead} \hfill Sep 2024 -- May 2025
+\begin{itemize}
+    \item Led beginner-friendly workshops on Git, web development, and API design for 80+ students.
+\end{itemize}
+
+\end{document}

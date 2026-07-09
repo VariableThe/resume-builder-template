@@ -1,0 +1,97 @@
+% Generic one-page resume template.
+% Compile with: tectonic resume.tex
+
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, top=1.6cm, bottom=1.6cm, left=1.7cm, right=1.7cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\setlist[itemize]{label=-, leftmargin=*, topsep=2pt, partopsep=0pt, parsep=0pt, itemsep=2pt}
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.3ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+
+\begin{document}
+\pagestyle{empty}
+
+% --- HEADER ---
+\begin{center}
+    {\Huge \textbf{YOUR NAME}} \\[0.2cm]
+    {\large Target Role 1 \enskip $\cdot$ \enskip Target Role 2 \enskip $\cdot$ \enskip Target Role 3} \\[0.15cm]
+    your.email@example.com \enskip $\cdot$ \enskip +1 000 000 0000 \enskip $\cdot$ \enskip City, Country \\[0.1cm]
+    \href{https://github.com/yourusername}{GitHub} \enskip $\cdot$ \enskip
+    \href{https://linkedin.com/in/yourusername}{LinkedIn} \enskip $\cdot$ \enskip
+    \href{https://your-portfolio.example.com}{Portfolio}
+\end{center}
+
+% --- EDUCATION ---
+\section*{Education}
+\noindent
+\textbf{University Name} \hfill City, Country \\
+Degree or Program \hfill Start Year -- End Year
+
+% --- TECHNICAL SKILLS ---
+\section*{Technical Skills}
+\begin{itemize}
+    \item \textbf{Languages:} Python, TypeScript, JavaScript, C++, SQL
+    \item \textbf{Frameworks \& Tools:} React, Node.js, Docker, Git, Linux
+    \item \textbf{Core Areas:} Full-stack Development, Machine Learning, Systems, Cloud
+\end{itemize}
+
+% --- EXPERIENCE ---
+\section*{Experience}
+\noindent
+\textbf{Company or Organization} \hfill City, Country \\
+\textit{Role Title} \hfill Month Year -- Month Year
+\begin{itemize}
+    \item Built or improved a system, product, or workflow; include scale, users, latency, cost, or accuracy when possible.
+    \item Collaborated with a team or stakeholder group to deliver a measurable technical outcome.
+\end{itemize}
+
+\noindent
+\textbf{Company or Organization} \hfill City, Country \\
+\textit{Role Title} \hfill Month Year -- Month Year
+\begin{itemize}
+    \item Describe the problem, your action, and the result in one concise line.
+    \item Start bullets with strong verbs and avoid listing responsibilities without impact.
+\end{itemize}
+
+% --- PROJECTS ---
+\section*{Projects}
+\noindent
+\textbf{Project Name} $|$ \textit{Tech Stack}
+\begin{itemize}
+    \item Explain what the project does, the technical choices you made, and why they mattered.
+    \item Add a metric, deployment detail, benchmark, user count, or concrete result when available.
+\end{itemize}
+
+\noindent
+\textbf{Project Name} $|$ \textit{Tech Stack}
+\begin{itemize}
+    \item Focus on engineering depth: architecture, performance, security, reliability, or product quality.
+    \item Link to public demos or repositories only when they are polished enough to support your application.
+\end{itemize}
+
+\vspace{0.05cm}
+\noindent
+\textit{\small More projects available on \href{https://github.com/yourusername}{GitHub}.}
+
+% --- CERTIFICATIONS ---
+\section*{Certifications}
+\begin{itemize}
+    \item \href{https://example.com/certificate}{Certification Name} -- Issuing Organization
+    \item Certification Name -- Issuing Organization
+\end{itemize}
+
+% --- LEADERSHIP OR ACTIVITIES ---
+\section*{Leadership}
+\noindent
+\textbf{Organization} \\
+\textit{Role} \hfill Month Year -- Month Year
+\begin{itemize}
+    \item Led, organized, mentored, or shipped something meaningful; keep the language specific and verifiable.
+\end{itemize}
+
+\end{document}

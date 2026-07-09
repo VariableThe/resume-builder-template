@@ -1,0 +1,33 @@
+# Private local resume material
+/AI Recalls/
+/From Linkedin/
+/My resumes - old/
+/Resumes downloaded from drive/
+/criticisms/
+/latestresume/
+/github/
+
+# Personal notes and one-off applications
+/personalrecalls.md
+/master_achievements.md
+/certifications.md
+/*cover_letter*.md
+
+# Local generated resume outputs
+/resume.tex
+*.pdf
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Generated public notes; keep the directory but not scraped contents
+/data/github/
+
+# Archives and exports
+*.zip
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
