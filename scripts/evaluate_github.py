@@ -17,22 +17,54 @@ def fetch_json(url: str) -> object:
         return json.loads(response.read().decode("utf-8"))
 
 
-def fetch_text(url: str) -> str | None:
+def fetch_text(url: str, timeout: int = 10) -> str | None:
     request = urllib.request.Request(url, headers={"User-Agent": "resume-builder-template"})
     try:
-        with urllib.request.urlopen(request, timeout=20) as response:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
             return response.read().decode("utf-8", errors="ignore")
     except urllib.error.URLError:
         return None
 
 
+def get_readme_api(username: str, repo_name: str) -> str | None:
+    """Fetch README via the GitHub API (single call, base64 payload).
+
+    Preferred over raw.githubusercontent.com, which can hang. Returns None
+    when the repo has no readable README.
+    """
+    import base64
+
+    url = f"https://api.github.com/repos/{username}/{repo_name}/readme"
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": "resume-builder-template", "Accept": "application/vnd.github.raw"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            return response.read().decode("utf-8", errors="ignore")[:20000]
+    except urllib.error.URLError:
+        pass
+    # Fallback: JSON envelope variant.
+    request = urllib.request.Request(url, headers={"User-Agent": "resume-builder-template"})
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        content = payload.get("content", "")
+        if content:
+            return base64.b64decode(content).decode("utf-8", errors="ignore")[:20000]
+    except (urllib.error.URLError, ValueError, KeyError):
+        return None
+    return None
+
+
 def get_readme(username: str, repo_name: str, default_branch: str) -> str:
+    api_readme = get_readme_api(username, repo_name)
+    if api_readme:
+        return api_readme
+
     candidates = [
         f"https://raw.githubusercontent.com/{username}/{repo_name}/{default_branch}/README.md",
-        f"https://raw.githubusercontent.com/{username}/{repo_name}/{default_branch}/readme.md",
-        f"https://raw.githubusercontent.com/{username}/{repo_name}/{default_branch}/README.MD",
         f"https://raw.githubusercontent.com/{username}/{repo_name}/master/README.md",
-        f"https://raw.githubusercontent.com/{username}/{repo_name}/master/readme.md",
     ]
 
     for url in candidates:

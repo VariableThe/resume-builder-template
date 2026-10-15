@@ -1,5 +1,15 @@
 % Generic one-page resume template.
-% Compile with: tectonic resume.tex
+%
+% Build with (from repo root):
+%   python3 scripts/build.py --template
+% or directly:
+%   tectonic templates/resume.tex
+%
+% OPTIONAL PHOTO (top-right):
+%   Drop a headshot at assets/photo.jpg (.jpeg/.png also work), then build
+%   with scripts/build.py. If no photo is found, the header automatically
+%   falls back to a centered layout with no empty box.
+%   To move the photo to the top-LEFT instead, set \photolefttrue below.
 
 \documentclass[11pt, a4paper]{article}
 \usepackage[a4paper, top=1.6cm, bottom=1.6cm, left=1.7cm, right=1.7cm]{geometry}
@@ -7,24 +17,75 @@
 \usepackage[english]{babel}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 
 \setlist[itemize]{label=-, leftmargin=*, topsep=2pt, partopsep=0pt, parsep=0pt, itemsep=2pt}
 \titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
 \titlespacing*{\section}{0pt}{1.3ex plus 1ex minus .2ex}{0.8ex plus .2ex}
 
+% --- Photo auto-detection ---
+% Priority: assets/photo.jpg first. Checked last = wins, so the list below
+% runs from lowest to highest priority.
+\newcommand{\resumephoto}{}
+\newif\ifhasphoto
+\hasphotofalse
+\newcommand{\tryphoto}[1]{\IfFileExists{#1}{\renewcommand{\resumephoto}{#1}\hasphototrue}{}}
+\tryphoto{photo.png}
+\tryphoto{photo.jpeg}
+\tryphoto{photo.jpg}
+\tryphoto{../assets/photo.png}
+\tryphoto{../assets/photo.jpeg}
+\tryphoto{../assets/photo.jpg}
+\tryphoto{assets/photo.png}
+\tryphoto{assets/photo.jpeg}
+\tryphoto{assets/photo.jpg}
+
+% Flip this to \photolefttrue to put the photo top-left instead of top-right.
+\newif\ifphotoleft
+\photoleftfalse
+
 \begin{document}
 \pagestyle{empty}
 
-% --- HEADER ---
-\begin{center}
-    {\Huge \textbf{YOUR NAME}} \\[0.2cm]
-    {\large Target Role 1 \enskip $\cdot$ \enskip Target Role 2 \enskip $\cdot$ \enskip Target Role 3} \\[0.15cm]
-    your.email@example.com \enskip $\cdot$ \enskip +1 000 000 0000 \enskip $\cdot$ \enskip City, Country \\[0.1cm]
-    \href{https://github.com/yourusername}{GitHub} \enskip $\cdot$ \enskip
-    \href{https://linkedin.com/in/yourusername}{LinkedIn} \enskip $\cdot$ \enskip
-    \href{https://your-portfolio.example.com}{Portfolio}
-\end{center}
+% --- HEADER (photo-aware) ---
+\ifhasphoto
+  % Photo found: contact block (wide) + headshot (narrow, top-aligned).
+  \noindent
+  \ifphotoleft
+    \begin{minipage}[c]{0.20\textwidth}
+      \includegraphics[width=\linewidth, height=3.4cm, keepaspectratio, clip]{\resumephoto}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.76\textwidth}
+  \else
+    \begin{minipage}[c]{0.76\textwidth}
+  \fi
+      \begin{center}
+          {\Huge \textbf{YOUR NAME}} \\[0.2cm]
+          {\large Target Role 1 \enskip $\cdot$ \enskip Target Role 2 \enskip $\cdot$ \enskip Target Role 3} \\[0.15cm]
+          your.email@example.com \enskip $\cdot$ \enskip +1 000 000 0000 \enskip $\cdot$ \enskip City, Country \\[0.1cm]
+          \href{https://github.com/yourusername}{GitHub} \enskip $\cdot$ \enskip
+          \href{https://linkedin.com/in/yourusername}{LinkedIn} \enskip $\cdot$ \enskip
+          \href{https://your-portfolio.example.com}{Portfolio}
+      \end{center}
+    \end{minipage}
+  \ifphotoleft\else\hfill
+    \begin{minipage}[c]{0.20\textwidth}
+      \includegraphics[width=\linewidth, height=3.4cm, keepaspectratio, clip]{\resumephoto}
+    \end{minipage}
+  \fi
+  \vspace{0.15cm}
+\else
+  % No photo found: clean centered header, no empty box.
+  \begin{center}
+      {\Huge \textbf{YOUR NAME}} \\[0.2cm]
+      {\large Target Role 1 \enskip $\cdot$ \enskip Target Role 2 \enskip $\cdot$ \enskip Target Role 3} \\[0.15cm]
+      your.email@example.com \enskip $\cdot$ \enskip +1 000 000 0000 \enskip $\cdot$ \enskip City, Country \\[0.1cm]
+      \href{https://github.com/yourusername}{GitHub} \enskip $\cdot$ \enskip
+      \href{https://linkedin.com/in/yourusername}{LinkedIn} \enskip $\cdot$ \enskip
+      \href{https://your-portfolio.example.com}{Portfolio}
+  \end{center}
+\fi
 
 % --- EDUCATION ---
 \section*{Education}

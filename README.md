@@ -27,6 +27,27 @@ This repository is designed to be forked or copied by anyone who wants a clean r
 
 The compiled PDF will be created next to `resume.tex`.
 
+## Unified Build (photo-aware)
+
+All resumes build through one entrypoint, which auto-detects an optional
+headshot and embeds it top-right in the final PDF:
+
+```sh
+python3 scripts/build.py              # latestresume/AdityaSharma_230958070_CSFT.tex
+python3 scripts/build.py --template  # generic template smoke test
+python3 scripts/build.py --all       # everything
+```
+
+Outputs land in `output/pdf/` (gitignored).
+
+## Optional Photo
+
+Drop a headshot at `assets/photo.jpg` (`.jpeg`/`.png` also work), then
+re-run the build. First file found wins; with no photo every header falls
+back to a clean centered layout with no empty box. To move the photo to
+the top-left, set `\photolefttrue` in the `.tex` header. The photo itself
+is gitignored and never committed — see `assets/README.md`.
+
 ## Suggested Workflow
 
 Use these folders as a lightweight workspace:

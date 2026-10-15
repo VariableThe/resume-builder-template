@@ -13,7 +13,15 @@
 /certifications.md
 /*cover_letter*.md
 
+# Photo asset: ignore the actual photo, keep the folder scaffold
+/assets/photo.jpg
+/assets/photo.jpeg
+/assets/photo.png
+!/assets/.gitkeep
+!/assets/README.md
+
 # Local generated resume outputs
+/output/
 /resume.tex
 *.pdf
 *.aux
